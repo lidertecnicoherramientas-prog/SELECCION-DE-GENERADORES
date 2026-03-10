@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selector de Generadores Elite</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: linear-gradient(to bottom, #f0f4ff, #e0eaff); 
+            margin: 0; 
+            padding: 20px; 
+        }
+        .container { 
+            max-width: 900px; 
+            margin: auto; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            border: 1px solid #d0e0ff; 
+            box-shadow: 0 10px 40px rgba(0, 51, 102, 0.15); 
+        }
+        h1, h2 { color: #001f4d; }
+        label { display: block; margin: 15px 0 5px; font-weight: bold; color: #333; }
+        input, select { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 6px; 
+            font-size: 16px;
+        }
+        button { 
+            background: linear-gradient(#ffd700, #e6c200); 
+            color: #001f4d; 
+            padding: 14px 28px; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            margin-top: 20px; 
+            font-weight: bold;
+        }
+        button:hover { 
+            background: linear-gradient(#e6c200, #cca300); 
+        }
+        #resultado { margin-top: 40px; display: none; }
+        .card { 
+            margin-bottom: 24px; 
+            padding: 20px; 
+            border: 1px solid #b3d4ff; 
+            border-radius: 10px; 
+            background: #fafcff; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        .card img { 
+            max-width: 180px; 
+            height: auto; 
+            border-radius: 8px; 
+            margin-bottom: 15px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .apto { 
+            color: #006600; 
+            font-weight: bold; 
+            font-size: 1.2em; 
+            background: #e6ffe6; 
+            padding: 6px 12px; 
+            border-radius: 6px; 
+            display: inline-block;
+        }
+        .no-apto { 
+            color: #990000; 
+            font-weight: bold; 
+            font-size: 1.1em; 
+            background: #ffe6e6; 
+            padding: 6px 12px; 
+            border-radius: 6px; 
+            display: inline-block;
+        }
+        .final-recomendacion { 
+            margin-top: 30px; 
+            padding: 20px; 
+            background: #fffdf5; 
+            border-radius: 10px; 
+            border-left: 5px solid #ffd700; 
+            box-shadow: 0 2px 10px rgba(255,215,0,0.15);
+            /* Estilo simple para las explicaciones (agregado sin afectar lo demás) */
+        .explicacion {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin: 8px 0 16px 0;
+            font-size: 0.95em;
+            color: #664d03;
+        }
+
+        }
+        .explicacion strong { color: #b35c00; }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div style="position: relative; text-align: center; margin-bottom: 25px;">
+            <img src="./imagenes/logo-izquierda.png" alt="Logo Izquierda" style="position: absolute; left: 0; top: 0; max-height: 40px; width: auto;max-width: 40%;">
+            <h1 style="margin: 0; font-size: 2.3em;">Selector de Generadores</h1>
+            <img src="./imagenes/logo-derecha.png" alt="Logo Derecha" style="position: absolute; right: 0; top: 0; max-height: 40px; width: auto;max-width: 40%;">
+        </div>
+        <p style="text-align: center; margin-top: 10px;">Ingresa tus requerimientos para encontrar el modelo más adecuado.</p>
+
+        <form id="formulario">
+            <label for="potencia">1. Potencia total a conectar (W) → (de 1 a 11000 W)
+            </label>
+            <div class="explicacion">
+                Suma los watts de todos los aparatos que conectarás <strong>al mismo tiempo</strong>.<br>
+                <strong>Importante:</strong> Equipos con motor (pulidora, taladro, nevera, bomba, etc.) consumen 2 a 3 veces más al arrancar. <br>
+                Ejemplo: Pulidora de 700 W, Factor de seguridad seleccionado: 2.5 → ingresa <strong>700</strong> (el cálculo interno será 1750 W requeridos).
+
+            <input type="number" id="potencia" min="1" max="1000000" required placeholder="Ej: 700">
+            <label for="altura">2. Altura sobre el nivel del mar (m) → (de 1 a 3500m) </label>
+            <div class="explicacion">
+                En alturas elevadas el motor pierde potencia por menor densidad del aire (aprox. 1% menos por cada 100 m).<br>
+                Ejemplos:<br>
+                • Barranquilla ≈ 18 m → pierde ≈0.18%<br>
+                • Bucaramanga ≈ 959 m → pierde ≈9.5%<br>
+                • Bogotá ≈ 2640 m → pierde ≈26%<br>
+                • Cali ≈ 1018 m → pierde ≈10%<br>
+                • Cartagena ≈ 2 m → pierde ≈0.02%<br>
+                • Medellín ≈ 1500 m → pierde ≈15%<br>
+                • Monteria ≈ 18 m → pierde ≈0.18%<br>
+                • Valledupar ≈ 169 m → pierde ≈1.6%<br>
+                • Pereira ≈ 1411 m → pierde ≈14%<br>
+                
+                Ingresa la altura real de tu ubicación.
+            <input type="number" id="altura" min="0" max="5000" required placeholder="Ej: 2640 (Bogotá)">
+
+            <label for="calidad">3. Calidad de la energía requerida</label>
+            <div class="explicacion">
+                <strong>Inversor (electrónica delicada):</strong> Elige esta opción para laptops, celulares, TVs LED, equipos médicos o cualquier dispositivo sensible (onda sinusoidal pura y estable).<br>
+                <strong>Normal (solo potencia):</strong> Para herramientas, motores, luces, neveras, bombas. Si eliges normal, también sirven generadores inversor.
+            <select id="calidad" required>
+                <option value="">Selecciona...</option>
+                <option value="inversor">Inversor (electrónica delicada)</option>
+                <option value="normal">Normal (solo potencia)</option>
+            </select>
+
+            <label for="combustible">4. Combustible</label>
+            <div class="explicacion">
+                El tipo de combustible afecta al generador en el consumo por galon, el diesel es mas "ahorrador".
+            <select id="combustible" required>
+                <option value="">Selecciona...</option>
+                <option value="gasolina">Gasolina</option>
+                <option value="diesel">Diesel</option>
+            </select>
+
+            <label for="horas">5. Horas de trabajo continuo</label>
+            <div class="explicacion">
+                Tiempo maximo de trabajo continuo del generador,despues se debe dejar descansar por lo menos 1 hora, y este ciclo se puede repetir unicamente 2 veces por dia. el exceder estos tiempos no quiere decir que el generador falle, esto genera desgaste prematuro del equipo.
+                
+            <select id="horas" required>
+                <option value="">Selecciona...</option>
+                <option value="1.5">1.5 horas</option>
+                <option value="3">3 horas</option>
+                <option value="4">4 horas</option>
+                <option value="5">5 horas</option>
+                <option value="6">6 horas</option>
+                <option value="8">8 horas</option>
+            </select>
+
+<label for="factorPotencia">Factor de potencia / Sobredimensionamiento</label>
+<div class="explicacion">
+    Multiplicador para cubrir picos de arranque (motores, compresores, etc.).<br>
+    • 1.5 → cargas resistivas puras (luces, calentadores)<br>
+    • 2.5 → uso mixto / recomendado por defecto<br>
+    • 3.0 → arranques muy duros (bombas grandes, múltiples motores)
+</div>
+<select id="factorPotencia" required>
+    <option value="">Selecciona...</option>
+    <option value="1.5">1.5</option>
+    <option value="2.5" selected>2.5 (recomendado)</option>
+    <option value="3.0">3.0</option>
+</select>
+
+            <button type="button" id="calcular">Ver Generadores Compatibles</button>
+        </form>
+
+        <div id="resultado">
+            <h2>Análisis de Modelos</h2>
+            <div id="analisis-container"></div>
+
+            <div class="final-recomendacion" id="recomendacion-final">
+                <!-- Aquí va el texto final -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const calcularBtn = document.getElementById('calcular');
+        const resultadoDiv = document.getElementById('resultado');
+        const analisisContainer = document.getElementById('analisis-container');
+        const recomendacionFinal = document.getElementById('recomendacion-final');
+
+        // Base de datos (sin modificar)
+        const generadores = [
+            { ref: '2G10i', marca: 'Elite', potencia: 800, inversor: true, combustible: 'gasolina', horas: 1.5, imagenUrl: './imagenes/2G10i.jpg' },
+            { ref: '2G950', marca: 'Elite', potencia: 900, inversor: false, combustible: 'gasolina', horas: 1.5, imagenUrl: './imagenes/2G950.jpg' },
+            { ref: '2G13', marca: 'Elite', potencia: 1300, inversor: false, combustible: 'gasolina', horas: 3, imagenUrl: './imagenes/2G13.jpg' },
+            { ref: '2G15i', marca: 'Elite', potencia: 1500, inversor: true, combustible: 'gasolina', horas: 2, imagenUrl: './imagenes/2G15i.jpg' },
+            { ref: '2G25', marca: 'Elite', potencia: 2500, inversor: false, combustible: 'gasolina', horas: 3, imagenUrl: './imagenes/2G25.jpg' },
+            { ref: '2G24i', marca: 'Elite', potencia: 2200, inversor: true, combustible: 'gasolina', horas: 3, imagenUrl: './imagenes/2G24i.jpg' },
+            { ref: '2G40', marca: 'Elite', potencia: 4000, inversor: false, combustible: 'gasolina', horas: 4, imagenUrl: './imagenes/2G40.jpg' },
+            { ref: '2G45ia', marca: 'Elite', potencia: 4300, inversor: true, combustible: 'gasolina', horas: 4, imagenUrl: './imagenes/2G45ia.jpg' },
+            { ref: 'ED6512', marca: 'Elite', potencia: 6000, inversor: false, combustible: 'diesel', horas: 4, imagenUrl: './imagenes/ED6512.jpg' },
+            { ref: '2G65', marca: 'Elite', potencia: 6500, inversor: false, combustible: 'gasolina', horas: 4, imagenUrl: './imagenes/2G65.jpg' },
+            { ref: '2G70i', marca: 'Elite', potencia: 6600, inversor: true, combustible: 'gasolina', horas: 4, imagenUrl: './imagenes/2G70i.jpg' },
+            { ref: '2G80', marca: 'Elite', potencia: 8000, inversor: false, combustible: 'gasolina', horas: 5, imagenUrl: './imagenes/2G80.jpg' },
+            { ref: '2G100', marca: 'Elite', potencia: 9000, inversor: false, combustible: 'gasolina', horas: 5, imagenUrl: './imagenes/2G100.jpg' },
+            { ref: '2G120', marca: 'Elite', potencia: 11000, inversor: false, combustible: 'gasolina', horas: 5, imagenUrl: './imagenes/2G120.jpg' }
+        ];
+
+        calcularBtn.addEventListener('click', () => {
+            const potenciaUser   = parseFloat(document.getElementById('potencia').value);
+            const altura         = parseFloat(document.getElementById('altura').value);
+            const calidad        = document.getElementById('calidad').value;
+            const combustible    = document.getElementById('combustible').value;
+            const horasReq       = parseFloat(document.getElementById('horas').value);
+
+            // ── NUEVO ── Factor de potencia seleccionado por el usuario
+            const factorPotenciaSelect = document.getElementById('factorPotencia');
+            const factorPotencia = factorPotenciaSelect ? parseFloat(factorPotenciaSelect.value) : 2.5;
+
+            if (isNaN(potenciaUser) || isNaN(altura) || !calidad || !combustible || isNaN(horasReq) || isNaN(factorPotencia)) {
+                alert('Completa todos los campos correctamente.');
+                return;
+            }
+
+            const potenciaRequerida = potenciaUser * factorPotencia;
+            const porcentajeReduccion = Math.floor(altura / 100);
+            const reduccionFactor = 1 - (porcentajeReduccion / 100);
+
+            analisisContainer.innerHTML = '';
+            let aptos = [];
+
+            generadores.forEach(gen => {
+                const potenciaEfectiva = Math.round(gen.potencia * reduccionFactor);
+
+                const matchInversor    = (calidad === 'inversor' && gen.inversor) || (calidad === 'normal');
+                const matchCombustible = gen.combustible === combustible;
+                const matchHoras       = gen.horas >= horasReq;
+                const matchPotencia    = potenciaEfectiva >= potenciaRequerida;
+
+                const esApto = matchInversor && matchCombustible && matchHoras && matchPotencia;
+
+                // ── NUEVO ── Razones de rechazo (solo si NO es apto)
+                let razonesRechazo = [];
+                if (!matchPotencia) {
+                    razonesRechazo.push(`Potencia insuficiente (${potenciaEfectiva} W < ${Math.round(potenciaRequerida)} W)`);
+                }
+                if (!matchInversor) {
+                    razonesRechazo.push(`No es inversor (requerido para electrónica delicada)`);
+                }
+                if (!matchCombustible) {
+                    razonesRechazo.push(`Combustible incorrecto (${gen.combustible} ≠ ${combustible})`);
+                }
+                if (!matchHoras) {
+                    razonesRechazo.push(`Autonomía insuficiente (${gen.horas} h < ${horasReq} h)`);
+                }
+
+                const card = document.createElement('div');
+                card.classList.add('card');
+
+                let html = '';
+                if (gen.imagenUrl) {
+                    html += `<img src="${gen.imagenUrl}" alt="${gen.ref} ${gen.marca}">`;
+                }
+                html += `
+                    <h3>${gen.ref} - ${gen.marca}</h3>
+                    <p><strong>Potencia nominal:</strong> ${gen.potencia} W</p>
+                    <p><strong>Potencia efectiva a ${altura} m (-${porcentajeReduccion}%):</strong> ${potenciaEfectiva} W</p>
+                    <p><strong>Potencia requerida (${factorPotencia}×):</strong> ${Math.round(potenciaRequerida)} W</p>
+                    <p>Inversor: <strong>${gen.inversor ? 'SÍ' : 'NO'}</strong> ${calidad === 'inversor' ? '(necesario)' : ''}</p>
+                    <p>Combustible: <strong>${gen.combustible}</strong></p>
+                    <p>Horas de trabajo continuo: <strong>${gen.horas} h</strong> (≥ ${horasReq} h)</p>
+                    <p class="${esApto ? 'apto' : 'no-apto'}">${esApto ? '✔ APTO' : '✘ NO APTO'}</p>
+                `;
+
+                // ── NUEVO ── Mostrar razones de rechazo en rojo y subrayado si no es apto
+                if (!esApto && razonesRechazo.length > 0) {
+                    html += `<p style="color: #990000; font-weight: bold; text-decoration: underline; margin-top: 10px;">
+                        Motivo(s) de rechazo:<br>${razonesRechazo.join('<br>')}
+                    </p>`;
+                }
+
+                card.innerHTML = html;
+                analisisContainer.appendChild(card);
+
+                if (esApto) aptos.push(gen.ref);
+            });
+
+            if (aptos.length > 0) {
+                recomendacionFinal.innerHTML = `
+                    <strong>Generadores recomendados:</strong> ${aptos.join(' • ')}<br><br>
+                    <strong>Consejo:</strong> Elige el de mayor potencia dentro de los aptos si vas a conectar equipos con arranque difícil (ej. motores). 
+                    Si buscas el más económico, selecciona el de menor potencia que aún sea apto.
+                `;
+            } else {
+                recomendacionFinal.innerHTML = `
+                    <strong>No hay coincidencias.</strong><br>
+                    Posibles causas:<br>
+                    • La potencia requerida es muy alta para la altura ingresada<br>
+                    • No hay modelos inversor/gasolina con suficientes horas<br>
+                    Prueba reduciendo la potencia o las horas requeridas.
+                `;
+            }
+
+            resultadoDiv.style.display = 'block';
+            resultadoDiv.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>

@@ -1,0 +1,12 @@
+- Subrayar el motivo por el cual es rechazado un modelo de generador
+- En comentarios: elminiar el texto "(ej. motores). Si buscas el más económico, selecciona el de menor potencia que aún sea apto."
+
+1. cambiar aparatos, por herramientas
+1. agregar texto explicativo
+2. agregar las alturas de las principales ciudades 
+5. Modificar el tiempo de trabajo por ciclo, al tiempo de la ficha técnica
+
+PREGUNTAS
+
+-El peso importa? se puede implementar este filtro para la selección de generadores?
+-El uso, minería, etc(creo que no porque estos equipos se venden para un uso expontaneo en caso de emergencia.
