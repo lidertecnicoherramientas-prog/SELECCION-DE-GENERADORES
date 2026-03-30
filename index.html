@@ -6,141 +6,241 @@
     <title>Selector de Generadores Elite</title>
     <style>
         body { 
-            font-family: Arial, sans-serif; 
-            background: linear-gradient(to bottom, #f0f4ff, #e0eaff); 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background: linear-gradient(135deg, #0a1f2e, #1e3a5f, #2c5364);
             margin: 0; 
             padding: 20px; 
+            color: #e0f0ff;
+            min-height: 100vh;
         }
         .container { 
-            max-width: 900px; 
+            max-width: 1000px; 
             margin: auto; 
-            background: white; 
-            padding: 30px; 
-            border-radius: 12px; 
-            border: 1px solid #d0e0ff; 
-            box-shadow: 0 10px 40px rgba(0, 51, 102, 0.15); 
+            background: rgba(15, 35, 55, 0.95); 
+            backdrop-filter: blur(12px);
+            padding: 40px 30px; 
+            border-radius: 20px; 
+            border: 1px solid rgba(100, 180, 255, 0.2); 
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
         }
-        h1, h2 { color: #001f4d; }
-        label { display: block; margin: 15px 0 5px; font-weight: bold; color: #333; }
+        h1 { 
+            color: #a0d8ff; 
+            text-align: center;
+            font-size: 2.6em; 
+            margin: 0 0 10px 0; 
+        }
+        label { 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 18px 0 8px; 
+            font-weight: bold; 
+            color: #c0e0ff;
+        }
+        .info-icon {
+            width: 28px;
+            height: 28px;
+            background: #4a9eff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(74, 158, 255, 0.4);
+        }
+        .info-icon:hover { background: #5ab0ff; }
+
         input, select { 
             width: 100%; 
-            padding: 12px; 
-            margin-bottom: 10px; 
-            border: 1px solid #ccc; 
-            border-radius: 6px; 
+            padding: 14px; 
+            margin-bottom: 15px; 
+            background: #1e3a5f;
+            border: 1px solid #4a7bb3;
+            border-radius: 8px; 
             font-size: 16px;
+            color: #e0f0ff;
         }
         button { 
-            background: linear-gradient(#ffd700, #e6c200); 
-            color: #001f4d; 
-            padding: 14px 28px; 
+            background: linear-gradient(#4a9eff, #2b7ad9); 
+            color: white; 
+            padding: 16px 32px; 
             border: none; 
-            border-radius: 6px; 
+            border-radius: 8px; 
             cursor: pointer; 
-            font-size: 16px; 
-            margin-top: 20px; 
+            font-size: 17px; 
+            margin-top: 25px; 
             font-weight: bold;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3);
         }
         button:hover { 
-            background: linear-gradient(#e6c200, #cca300); 
+            background: linear-gradient(#5ab0ff, #3a8ae9);
         }
-        #resultado { margin-top: 40px; display: none; }
+
+        #resultado { margin-top: 50px; display: none; }
         .card { 
-            margin-bottom: 24px; 
-            padding: 20px; 
-            border: 1px solid #b3d4ff; 
-            border-radius: 10px; 
-            background: #fafcff; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 25px; 
+            padding: 22px; 
+            background: rgba(30, 58, 95, 0.7); 
+            border: 1px solid #4a7bb3;
+            border-radius: 12px; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
         .card img { 
-            max-width: 180px; 
+            max-width: 140px;   /* Reducido */
             height: auto; 
-            border-radius: 8px; 
+            border-radius: 10px; 
             margin-bottom: 15px; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         .apto { 
-            color: #006600; 
+            color: #00ff9d; 
             font-weight: bold; 
-            font-size: 1.2em; 
-            background: #e6ffe6; 
-            padding: 6px 12px; 
-            border-radius: 6px; 
+            background: rgba(0, 255, 150, 0.15); 
+            padding: 8px 16px; 
+            border-radius: 8px; 
             display: inline-block;
+            font-size: 1.1em;
         }
         .no-apto { 
-            color: #990000; 
+            color: #ff6b6b; 
             font-weight: bold; 
-            font-size: 1.1em; 
-            background: #ffe6e6; 
-            padding: 6px 12px; 
-            border-radius: 6px; 
+            background: rgba(255, 107, 107, 0.15); 
+            padding: 8px 16px; 
+            border-radius: 8px; 
             display: inline-block;
+            font-size: 1.05em;
         }
         .final-recomendacion { 
-            margin-top: 30px; 
-            padding: 20px; 
-            background: #fffdf5; 
-            border-radius: 10px; 
-            border-left: 5px solid #ffd700; 
-            box-shadow: 0 2px 10px rgba(255,215,0,0.15);
-            /* Estilo simple para las explicaciones (agregado sin afectar lo demás) */
+            margin-top: 35px; 
+            padding: 25px; 
+            background: rgba(30, 58, 95, 0.8); 
+            border-radius: 12px; 
+            border-left: 6px solid #4a9eff; 
+        }
         .explicacion {
-            background: #fff3cd;
-            border: 1px solid #ffeeba;
-            padding: 12px 16px;
-            border-radius: 6px;
-            margin: 8px 0 16px 0;
-            font-size: 0.95em;
-            color: #664d03;
+            background: rgba(74, 158, 255, 0.1);
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            padding: 12px 16px;   /* Texto un poco más compacto */
+            border-radius: 8px;
+            margin: 10px 0 18px 0;
+            color: #b0d0ff;
+            font-size: 0.94em;
         }
 
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
         }
-        .explicacion strong { color: #b35c00; }
+        .modal-content {
+            background: #1e3a5f;
+            padding: 30px 35px;
+            border-radius: 16px;
+            max-width: 580px;
+            width: 90%;
+            border: 1px solid #4a9eff;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.7);
+        }
+        .modal-content h3 {
+            color: #a0d8ff;
+            margin-top: 0;
+        }
+        .close {
+            float: right;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #a0d8ff;
+            line-height: 1;
+        }
+        .close:hover { color: white; }
 
+        /* Contactos */
+        .contactos {
+            margin-top: 70px;
+            padding: 35px;
+            background: rgba(15, 30, 50, 0.9);
+            border-radius: 16px;
+            border: 1px solid rgba(100, 180, 255, 0.15);
+            text-align: center;
+        }
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .contacto-card {
+            background: rgba(30, 58, 95, 0.6);
+            padding: 22px;
+            border-radius: 12px;
+            border: 1px solid #4a7bb3;
+        }
     </style>
 </head>
 <body>
     <div class="container">
 
-        <div style="position: relative; text-align: center; margin-bottom: 25px;">
-            <img src="./imagenes/logo-izquierda.png" alt="Logo Izquierda" style="position: absolute; left: 0; top: 0; max-height: 40px; width: auto;max-width: 40%;">
-            <h1 style="margin: 0; font-size: 2.3em;">Selector de Generadores</h1>
-            <img src="./imagenes/logo-derecha.png" alt="Logo Derecha" style="position: absolute; right: 0; top: 0; max-height: 40px; width: auto;max-width: 40%;">
+        <div style="position: relative; text-align: center; margin-bottom: 30px;">
+            <img src="./imagenes/logo-izquierda.png" alt="Logo Izquierda" style="position: absolute; left: 0; top: 0; max-height: 50px; max-width: 40%;">
+            <h1>Selector de Generadores Elite</h1>
+            <img src="./imagenes/logo-derecha.png" alt="Logo Derecha" style="position: absolute; right: 0; top: 0; max-height: 50px; max-width: 40%;">
         </div>
-        <p style="text-align: center; margin-top: 10px;">Ingresa tus requerimientos para encontrar el modelo más adecuado.</p>
 
         <form id="formulario">
-            <label for="potencia">1. Potencia total a conectar (W) → (de 1 a 11000 W)
+            <!-- Pregunta 1 -->
+            <label for="potencia">
+                1. Potencia total a conectar (W)
+                <span class="info-icon" id="infoPotencia" title="Cómo calcular vatios">i</span>
             </label>
             <div class="explicacion">
                 Suma los watts de todos los aparatos que conectarás <strong>al mismo tiempo</strong>.<br>
-                <strong>Importante:</strong> Equipos con motor (pulidora, taladro, nevera, bomba, etc.) consumen 2 a 3 veces más al arrancar. <br>
-                Ejemplo: Pulidora de 700 W, Factor de seguridad seleccionado: 2.5 → ingresa <strong>700</strong> (el cálculo interno será 1750 W requeridos).
-
+                <strong>Importante:</strong> Equipos con motor consumen más al arrancar.
+            </div>
             <input type="number" id="potencia" min="1" max="1000000" required placeholder="Ej: 700">
-            <label for="altura">2. Altura sobre el nivel del mar (m) → (de 1 a 3500m) </label>
-            <div class="explicacion">
-                En alturas elevadas el motor pierde potencia por menor densidad del aire (aprox. 1% menos por cada 100 m).<br>
-                Ejemplos:<br>
-                • Barranquilla ≈ 18 m → pierde ≈0.18%<br>
-                • Bucaramanga ≈ 959 m → pierde ≈9.5%<br>
-                • Bogotá ≈ 2640 m → pierde ≈26%<br>
-                • Cali ≈ 1018 m → pierde ≈10%<br>
-                • Cartagena ≈ 2 m → pierde ≈0.02%<br>
-                • Medellín ≈ 1500 m → pierde ≈15%<br>
-                • Monteria ≈ 18 m → pierde ≈0.18%<br>
-                • Valledupar ≈ 169 m → pierde ≈1.6%<br>
-                • Pereira ≈ 1411 m → pierde ≈14%<br>
-                
-                Ingresa la altura real de tu ubicación.
-            <input type="number" id="altura" min="0" max="5000" required placeholder="Ej: 2640 (Bogotá)">
 
+            <!-- Pregunta 2 con ícono -->
+            <label for="ciudad">
+                2. Ubicación (Ciudad)
+                <span class="info-icon" id="infoUbicacion" title="Pérdida de potencia por altura">i</span>
+            </label>
+            <div class="explicacion">
+                Selecciona tu ciudad. El sistema aplicará automáticamente la pérdida de potencia por altura sobre el nivel del mar.
+            </div>
+            <select id="ciudad" required>
+                <option value="">Selecciona tu ciudad...</option>
+                <option value="bogota">Bogotá </option>
+                <option value="medellin">Medellín </option>
+                <option value="cali">Cali </option>
+                <option value="bucaramanga">Bucaramanga </option>
+                <option value="pereira">Pereira / Armenia </option>
+                <option value="barranquilla">Barranquilla / Cartagena / Montería </option>
+                <option value="valledupar">Valledupar </option>
+                <option value="neiva">Neiva </option>
+                <option value="ibague">Ibagué </option>
+                <option value="manizales">Manizales </option>
+                <option value="otra">Otra ciudad (ingresar altura manual)</option>
+            </select>
+
+            <div id="divOtraAltura" style="display: none;">
+                <label for="alturaManual">Ingresa la altura sobre el nivel del mar (m)</label>
+                <input type="number" id="alturaManual" min="0" max="5000" placeholder="Ej: 2640">
+            </div>
+
+            <!-- Preguntas 3, 4 y 5 -->
             <label for="calidad">3. Calidad de la energía requerida</label>
             <div class="explicacion">
-                <strong>Inversor (electrónica delicada):</strong> Elige esta opción para laptops, celulares, TVs LED, equipos médicos o cualquier dispositivo sensible (onda sinusoidal pura y estable).<br>
-                <strong>Normal (solo potencia):</strong> Para herramientas, motores, luces, neveras, bombas. Si eliges normal, también sirven generadores inversor.
+                <strong>Inversor:</strong> Electrónica delicada (laptops, TVs, equipos médicos).<br>
+                <strong>Normal:</strong> Herramientas, motores, luces, neveras.
+            </div>
             <select id="calidad" required>
                 <option value="">Selecciona...</option>
                 <option value="inversor">Inversor (electrónica delicada)</option>
@@ -148,8 +248,7 @@
             </select>
 
             <label for="combustible">4. Combustible</label>
-            <div class="explicacion">
-                El tipo de combustible afecta al generador en el consumo por galon, el diesel es mas "ahorrador".
+            <div class="explicacion">El tipo de combustible afecta al generador en el consumo por galon, el diesel es mas "ahorrador".</div>
             <select id="combustible" required>
                 <option value="">Selecciona...</option>
                 <option value="gasolina">Gasolina</option>
@@ -159,10 +258,11 @@
             <label for="horas">5. Horas de trabajo continuo</label>
             <div class="explicacion">
                 Tiempo maximo de trabajo continuo del generador,despues se debe dejar descansar por lo menos 1 hora, y este ciclo se puede repetir unicamente 2 veces por dia. el exceder estos tiempos no quiere decir que el generador falle, esto genera desgaste prematuro del equipo.
-                
+            </div>
             <select id="horas" required>
                 <option value="">Selecciona...</option>
                 <option value="1.5">1.5 horas</option>
+                <option value="2">2 horas</option>
                 <option value="3">3 horas</option>
                 <option value="4">4 horas</option>
                 <option value="5">5 horas</option>
@@ -170,19 +270,18 @@
                 <option value="8">8 horas</option>
             </select>
 
-<label for="factorPotencia">Factor de potencia / Sobredimensionamiento</label>
-<div class="explicacion">
-    Multiplicador para cubrir picos de arranque (motores, compresores, etc.).<br>
-    • 1.5 → cargas resistivas puras (luces, calentadores)<br>
-    • 2.5 → uso mixto / recomendado por defecto<br>
-    • 3.0 → arranques muy duros (bombas grandes, múltiples motores)
-</div>
-<select id="factorPotencia" required>
-    <option value="">Selecciona...</option>
-    <option value="1.5">1.5</option>
-    <option value="2.5" selected>2.5 (recomendado)</option>
-    <option value="3.0">3.0</option>
-</select>
+            <!-- Factor de potencia pre-seleccionado en 1.5 -->
+            <label for="factorPotencia">Factor de potencia / Sobredimensionamiento</label>
+            <div class="explicacion">
+                • 1.5 → cargas puras (luces, calentadores)<br>
+                • 2.5 → recomendado (uso mixto)<br>
+                • 3.0 → arranques muy duros
+            </div>
+            <select id="factorPotencia" required>
+                <option value="1.5" selected>1.5</option>
+                <option value="2.5">2.5 (recomendado)</option>
+                <option value="3.0">3.0</option>
+            </select>
 
             <button type="button" id="calcular">Ver Generadores Compatibles</button>
         </form>
@@ -190,56 +289,151 @@
         <div id="resultado">
             <h2>Análisis de Modelos</h2>
             <div id="analisis-container"></div>
+            <div class="final-recomendacion" id="recomendacion-final"></div>
+        </div>
 
-            <div class="final-recomendacion" id="recomendacion-final">
-                <!-- Aquí va el texto final -->
+        <!-- Contactos -->
+        <div class="contactos">
+            <h2>Alguna duda?</h2>
+            <div class="contacto-grid">
+                <div class="contacto-card">
+                    <h3>Líder Técnico en Maquinaria</h3>
+                    <p><strong>Nombre:</strong> Edwin Florez</p>
+                    <p><strong>Teléfono:</strong> <a href="tel:+573133453489">+57 3133453489</a></p>
+                    <p><strong>Correo:</strong> <a href="mailto:lidertecnicomaquinaria@ujueta.com">lidertecnicomaquinaria@ujueta.com</a></p>
+                </div>
+                <div class="contacto-card">
+                    <h3>Líder Técnico en Herramienta</h3>
+                    <p><strong>Nombre:</strong> Diego Florez</p>
+                    <p><strong>Teléfono:</strong> <a href="tel:+573102544973">+57 3102544973</a></p>
+                    <p><strong>Correo:</strong> <a href="mailto:lidertecnicoherramientas@ujueta.com
+">lidertecnicoherramientas@ujueta.com
+</a></p>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal Pregunta 1 -->
+    <div id="modalPotencia" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal1">&times;</span>
+            <h3>¿Cómo calcular los Vatios?</h3>
+            <p>Para hallar los vatios (que miden la potencia eléctrica), solo necesitas conocer dos datos básicos de tu aparato o circuito: la tensión y la corriente.</p>
+            <p><strong>La fórmula es muy sencilla:</strong><br>
+            <strong>Vatios = Voltios × Amperios</strong></p>
+            <p>Aquí te explico qué es cada cosa como si estuviéramos tomando un café:</p>
+            <ul>
+                <li><strong>Voltios (V):</strong> Es la "fuerza" o presión con la que llega la electricidad (en una casa normal suele ser 110V o 220V).</li>
+                <li><strong>Amperios (A):</strong> Es la cantidad de electricidad que fluye por el cable en un momento dado.</li>
+                <li><strong>Vatios (W):</strong> Es el resultado total, es decir, cuánta energía está consumiendo el aparato.</li>
+            </ul>
+            <p><strong>Ejemplo rápido:</strong><br>
+            Si tienes un cargador que funciona a 5 voltios y usa 2 amperios, multiplicas 5 × 2 y obtienes 10 vatios.</p>
+        </div>
+    </div>
+
+    <!-- Modal Pregunta 2 -->
+    <div id="modalUbicacion" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal2">&times;</span>
+            <h3>Pérdida de potencia por altura</h3>
+            <p>• Barranquilla ≈ 18 m → pierde ≈0.18%<br>
+            • Bucaramanga ≈ 959 m → pierde ≈9.5%<br>
+            • Bogotá ≈ 2640 m → pierde ≈26%<br>
+            • Cali ≈ 1018 m → pierde ≈10%<br>
+            • Cartagena ≈ 2 m → pierde ≈0.02%<br>
+            • Medellín ≈ 1500 m → pierde ≈15%<br>
+            • Monteria ≈ 18 m → pierde ≈0.18%<br>
+            • Valledupar ≈ 169 m → pierde ≈1.6%<br>
+            • Pereira ≈ 1411 m → pierde ≈14%</p>
         </div>
     </div>
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // Modal Pregunta 1
+        const infoPotencia = document.getElementById('infoPotencia');
+        const modalPotencia = document.getElementById('modalPotencia');
+        const close1 = document.getElementById('closeModal1');
+
+        infoPotencia.addEventListener('click', () => modalPotencia.style.display = 'flex');
+        close1.addEventListener('click', () => modalPotencia.style.display = 'none');
+
+        // Modal Pregunta 2
+        const infoUbicacion = document.getElementById('infoUbicacion');
+        const modalUbicacion = document.getElementById('modalUbicacion');
+        const close2 = document.getElementById('closeModal2');
+
+        infoUbicacion.addEventListener('click', () => modalUbicacion.style.display = 'flex');
+        close2.addEventListener('click', () => modalUbicacion.style.display = 'none');
+
+        // Cerrar modales al hacer clic fuera
+        window.addEventListener('click', (e) => {
+            if (e.target === modalPotencia) modalPotencia.style.display = 'none';
+            if (e.target === modalUbicacion) modalUbicacion.style.display = 'none';
+        });
+
+        // Resto del código de cálculo (sin cambios)
         const calcularBtn = document.getElementById('calcular');
         const resultadoDiv = document.getElementById('resultado');
         const analisisContainer = document.getElementById('analisis-container');
         const recomendacionFinal = document.getElementById('recomendacion-final');
+        const ciudadSelect = document.getElementById('ciudad');
+        const divOtraAltura = document.getElementById('divOtraAltura');
 
-        // Base de datos (sin modificar)
         const generadores = [
-            { ref: '2G10i', marca: 'Elite', potencia: 800, inversor: true, combustible: 'gasolina', horas: 1.5, imagenUrl: './imagenes/2G10i.jpg' },
-            { ref: '2G950', marca: 'Elite', potencia: 900, inversor: false, combustible: 'gasolina', horas: 1.5, imagenUrl: './imagenes/2G950.jpg' },
-            { ref: '2G13', marca: 'Elite', potencia: 1300, inversor: false, combustible: 'gasolina', horas: 3, imagenUrl: './imagenes/2G13.jpg' },
-            { ref: '2G15i', marca: 'Elite', potencia: 1500, inversor: true, combustible: 'gasolina', horas: 2, imagenUrl: './imagenes/2G15i.jpg' },
-            { ref: '2G25', marca: 'Elite', potencia: 2500, inversor: false, combustible: 'gasolina', horas: 3, imagenUrl: './imagenes/2G25.jpg' },
-            { ref: '2G24i', marca: 'Elite', potencia: 2200, inversor: true, combustible: 'gasolina', horas: 3, imagenUrl: './imagenes/2G24i.jpg' },
-            { ref: '2G40', marca: 'Elite', potencia: 4000, inversor: false, combustible: 'gasolina', horas: 4, imagenUrl: './imagenes/2G40.jpg' },
-            { ref: '2G45ia', marca: 'Elite', potencia: 4300, inversor: true, combustible: 'gasolina', horas: 4, imagenUrl: './imagenes/2G45ia.jpg' },
-            { ref: 'ED6512', marca: 'Elite', potencia: 6000, inversor: false, combustible: 'diesel', horas: 4, imagenUrl: './imagenes/ED6512.jpg' },
-            { ref: '2G65', marca: 'Elite', potencia: 6500, inversor: false, combustible: 'gasolina', horas: 4, imagenUrl: './imagenes/2G65.jpg' },
-            { ref: '2G70i', marca: 'Elite', potencia: 6600, inversor: true, combustible: 'gasolina', horas: 4, imagenUrl: './imagenes/2G70i.jpg' },
-            { ref: '2G80', marca: 'Elite', potencia: 8000, inversor: false, combustible: 'gasolina', horas: 5, imagenUrl: './imagenes/2G80.jpg' },
-            { ref: '2G100', marca: 'Elite', potencia: 9000, inversor: false, combustible: 'gasolina', horas: 5, imagenUrl: './imagenes/2G100.jpg' },
-            { ref: '2G120', marca: 'Elite', potencia: 11000, inversor: false, combustible: 'gasolina', horas: 5, imagenUrl: './imagenes/2G120.jpg' }
+            { ref: '2G10i',   marca: 'Elite', potencia: 800,  inversor: true,  combustible: 'gasolina', horas: 1.5, imagenUrl: './imagenes/2G10i.jpg' },
+            { ref: '2G950',   marca: 'Elite', potencia: 900,  inversor: false, combustible: 'gasolina', horas: 1.5, imagenUrl: './imagenes/2G950.jpg' },
+            { ref: '2G13',    marca: 'Elite', potencia: 1300, inversor: false, combustible: 'gasolina', horas: 3,   imagenUrl: './imagenes/2G13.jpg' },
+            { ref: '2G15i',   marca: 'Elite', potencia: 1500, inversor: true,  combustible: 'gasolina', horas: 2,   imagenUrl: './imagenes/2G15i.jpg' },
+            { ref: '2G25',    marca: 'Elite', potencia: 2500, inversor: false, combustible: 'gasolina', horas: 3,   imagenUrl: './imagenes/2G25.jpg' },
+            { ref: '2G24i',   marca: 'Elite', potencia: 2200, inversor: true,  combustible: 'gasolina', horas: 3,   imagenUrl: './imagenes/2G24i.jpg' },
+            { ref: '2G40',    marca: 'Elite', potencia: 4000, inversor: false, combustible: 'gasolina', horas: 4,   imagenUrl: './imagenes/2G40.jpg' },
+            { ref: '2G45ia',  marca: 'Elite', potencia: 4300, inversor: true,  combustible: 'gasolina', horas: 4,   imagenUrl: './imagenes/2G45ia.jpg' },
+            { ref: 'ED6512',  marca: 'Elite', potencia: 6000, inversor: false, combustible: 'diesel',   horas: 4,   imagenUrl: './imagenes/ED6512.jpg' },
+            { ref: '2G65',    marca: 'Elite', potencia: 6500, inversor: false, combustible: 'gasolina', horas: 4,   imagenUrl: './imagenes/2G65.jpg' },
+            { ref: '2G70i',   marca: 'Elite', potencia: 6600, inversor: true,  combustible: 'gasolina', horas: 4,   imagenUrl: './imagenes/2G70i.jpg' },
+            { ref: '2G80',    marca: 'Elite', potencia: 8000, inversor: false, combustible: 'gasolina', horas: 5,   imagenUrl: './imagenes/2G80.jpg' },
+            { ref: '2G100',   marca: 'Elite', potencia: 9000, inversor: false, combustible: 'gasolina', horas: 5,   imagenUrl: './imagenes/2G100.jpg' },
+            { ref: '2G120',   marca: 'Elite', potencia: 11000,inversor: false, combustible: 'gasolina', horas: 5,   imagenUrl: './imagenes/2G120.jpg' }
         ];
 
+        const ciudades = {
+            bogota: 26, medellin: 15, cali: 10, bucaramanga: 10,
+            pereira: 14, barranquilla: 0, valledupar: 2,
+            neiva: 4, ibague: 13, manizales: 22
+        };
+
+        ciudadSelect.addEventListener('change', () => {
+            divOtraAltura.style.display = (ciudadSelect.value === 'otra') ? 'block' : 'none';
+        });
+
         calcularBtn.addEventListener('click', () => {
-            const potenciaUser   = parseFloat(document.getElementById('potencia').value);
-            const altura         = parseFloat(document.getElementById('altura').value);
-            const calidad        = document.getElementById('calidad').value;
-            const combustible    = document.getElementById('combustible').value;
-            const horasReq       = parseFloat(document.getElementById('horas').value);
+            const potenciaUser = parseFloat(document.getElementById('potencia').value);
+            const calidad = document.getElementById('calidad').value;
+            const combustible = document.getElementById('combustible').value;
+            const horasReq = parseFloat(document.getElementById('horas').value);
+            const factorPotencia = parseFloat(document.getElementById('factorPotencia').value) || 1.5;
 
-            // ── NUEVO ── Factor de potencia seleccionado por el usuario
-            const factorPotenciaSelect = document.getElementById('factorPotencia');
-            const factorPotencia = factorPotenciaSelect ? parseFloat(factorPotenciaSelect.value) : 2.5;
-
-            if (isNaN(potenciaUser) || isNaN(altura) || !calidad || !combustible || isNaN(horasReq) || isNaN(factorPotencia)) {
-                alert('Completa todos los campos correctamente.');
+            if (isNaN(potenciaUser) || !calidad || !combustible || isNaN(horasReq)) {
+                alert('Por favor completa todos los campos correctamente.');
                 return;
             }
 
+            let porcentajeReduccion = 0;
+            if (ciudadSelect.value === 'otra') {
+                const alturaManual = parseFloat(document.getElementById('alturaManual').value);
+                if (isNaN(alturaManual)) {
+                    alert('Ingresa la altura manual cuando seleccionas "Otra ciudad".');
+                    return;
+                }
+                porcentajeReduccion = Math.floor(alturaManual / 100);
+            } else {
+                porcentajeReduccion = ciudades[ciudadSelect.value] || 0;
+            }
+
             const potenciaRequerida = potenciaUser * factorPotencia;
-            const porcentajeReduccion = Math.floor(altura / 100);
             const reduccionFactor = 1 - (porcentajeReduccion / 100);
 
             analisisContainer.innerHTML = '';
@@ -248,51 +442,36 @@
             generadores.forEach(gen => {
                 const potenciaEfectiva = Math.round(gen.potencia * reduccionFactor);
 
-                const matchInversor    = (calidad === 'inversor' && gen.inversor) || (calidad === 'normal');
+                const matchInversor = (calidad === 'inversor' && gen.inversor) || (calidad === 'normal');
                 const matchCombustible = gen.combustible === combustible;
-                const matchHoras       = gen.horas >= horasReq;
-                const matchPotencia    = potenciaEfectiva >= potenciaRequerida;
+                const matchHoras = gen.horas >= horasReq;
+                const matchPotencia = potenciaEfectiva >= potenciaRequerida;
 
                 const esApto = matchInversor && matchCombustible && matchHoras && matchPotencia;
 
-                // ── NUEVO ── Razones de rechazo (solo si NO es apto)
                 let razonesRechazo = [];
-                if (!matchPotencia) {
-                    razonesRechazo.push(`Potencia insuficiente (${potenciaEfectiva} W < ${Math.round(potenciaRequerida)} W)`);
-                }
-                if (!matchInversor) {
-                    razonesRechazo.push(`No es inversor (requerido para electrónica delicada)`);
-                }
-                if (!matchCombustible) {
-                    razonesRechazo.push(`Combustible incorrecto (${gen.combustible} ≠ ${combustible})`);
-                }
-                if (!matchHoras) {
-                    razonesRechazo.push(`Autonomía insuficiente (${gen.horas} h < ${horasReq} h)`);
-                }
+                if (!matchPotencia) razonesRechazo.push(`Potencia insuficiente (${potenciaEfectiva} W < ${Math.round(potenciaRequerida)} W)`);
+                if (!matchInversor) razonesRechazo.push(`No es inversor`);
+                if (!matchCombustible) razonesRechazo.push(`Combustible incorrecto`);
+                if (!matchHoras) razonesRechazo.push(`Solo ${gen.horas} h de autonomía`);
 
                 const card = document.createElement('div');
                 card.classList.add('card');
 
-                let html = '';
-                if (gen.imagenUrl) {
-                    html += `<img src="${gen.imagenUrl}" alt="${gen.ref} ${gen.marca}">`;
-                }
+                let html = gen.imagenUrl ? `<img src="${gen.imagenUrl}" alt="${gen.ref}">` : '';
                 html += `
                     <h3>${gen.ref} - ${gen.marca}</h3>
                     <p><strong>Potencia nominal:</strong> ${gen.potencia} W</p>
-                    <p><strong>Potencia efectiva a ${altura} m (-${porcentajeReduccion}%):</strong> ${potenciaEfectiva} W</p>
-                    <p><strong>Potencia requerida (${factorPotencia}×):</strong> ${Math.round(potenciaRequerida)} W</p>
-                    <p>Inversor: <strong>${gen.inversor ? 'SÍ' : 'NO'}</strong> ${calidad === 'inversor' ? '(necesario)' : ''}</p>
+                    <p><strong>Potencia efectiva (${porcentajeReduccion}% menos):</strong> ${potenciaEfectiva} W</p>
+                    <p><strong>Potencia requerida:</strong> ${Math.round(potenciaRequerida)} W</p>
+                    <p>Inversor: <strong>${gen.inversor ? 'SÍ' : 'NO'}</strong></p>
                     <p>Combustible: <strong>${gen.combustible}</strong></p>
-                    <p>Horas de trabajo continuo: <strong>${gen.horas} h</strong> (≥ ${horasReq} h)</p>
+                    <p>Horas continuo: <strong>${gen.horas} h</strong></p>
                     <p class="${esApto ? 'apto' : 'no-apto'}">${esApto ? '✔ APTO' : '✘ NO APTO'}</p>
                 `;
 
-                // ── NUEVO ── Mostrar razones de rechazo en rojo y subrayado si no es apto
                 if (!esApto && razonesRechazo.length > 0) {
-                    html += `<p style="color: #990000; font-weight: bold; text-decoration: underline; margin-top: 10px;">
-                        Motivo(s) de rechazo:<br>${razonesRechazo.join('<br>')}
-                    </p>`;
+                    html += `<p style="color: #ff6b6b; margin-top: 10px;">Motivos: ${razonesRechazo.join(' | ')}</p>`;
                 }
 
                 card.innerHTML = html;
@@ -303,22 +482,17 @@
 
             if (aptos.length > 0) {
                 recomendacionFinal.innerHTML = `
-                    <strong>Generadores recomendados:</strong> ${aptos.join(' • ')}<br><br>
-                    <strong>Consejo:</strong> Elige el de mayor potencia dentro de los aptos si vas a conectar equipos con arranque difícil (ej. motores). 
-                    Si buscas el más económico, selecciona el de menor potencia que aún sea apto.
+                    <strong>✅ Modelos recomendados:</strong> ${aptos.join(' • ')}<br><br>
+                    Elige según tu presupuesto y preferencia de potencia.
                 `;
             } else {
-                recomendacionFinal.innerHTML = `
-                    <strong>No hay coincidencias.</strong><br>
-                    Posibles causas:<br>
-                    • La potencia requerida es muy alta para la altura ingresada<br>
-                    • No hay modelos inversor/gasolina con suficientes horas<br>
-                    Prueba reduciendo la potencia o las horas requeridas.
-                `;
+                recomendacionFinal.innerHTML = `<strong>❌ No se encontraron generadores que cumplan todos los requisitos.</strong><br>Intenta ajustar el factor de potencia o las horas.`;
             }
 
             resultadoDiv.style.display = 'block';
             resultadoDiv.scrollIntoView({ behavior: 'smooth' });
         });
     });
-</script>
+    </script>
+</body>
+</html>
